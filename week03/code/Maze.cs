@@ -27,39 +27,27 @@ public class Maze
 
     // TODO Problem 4 - ADD YOUR CODE HERE
     /// <summary>
-    /// Check to see if you can move left.  If you can, then move.  If you
+    /// Check to see if you can move.  If you can, then move.  If you
     /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
     /// </summary>
-    public void MoveLeft()
-    {
-        // FILL IN CODE
-    }
+    public void MoveLeft() => MoveHelper(0);
 
-    /// <summary>
-    /// Check to see if you can move right.  If you can, then move.  If you
-    /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
-    /// </summary>
-    public void MoveRight()
-    {
-        // FILL IN CODE
-    }
+    public void MoveRight() => MoveHelper(1);
 
-    /// <summary>
-    /// Check to see if you can move up.  If you can, then move.  If you
-    /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
-    /// </summary>
-    public void MoveUp()
-    {
-        // FILL IN CODE
-    }
+    public void MoveUp() => MoveHelper(2);
 
-    /// <summary>
-    /// Check to see if you can move down.  If you can, then move.  If you
-    /// can't move, throw an InvalidOperationException with the message "Can't go that way!".
-    /// </summary>
-    public void MoveDown()
+    public void MoveDown() => MoveHelper(3);
+
+    public void MoveHelper(int direction)
     {
-        // FILL IN CODE
+        if (!_mazeMap.ContainsKey((_currX, _currY)) || !_mazeMap[(_currX, _currY)][direction])
+        throw new InvalidOperationException("Can't go that way!");
+
+        int[] deltaX = { -1, 1, 0, 0 };
+        int[] deltaY = { 0, 0, -1, 1 };
+
+        _currX += deltaX[direction];
+        _currY += deltaY[direction];
     }
 
     public string GetStatus()
